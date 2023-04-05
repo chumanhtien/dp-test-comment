@@ -32,6 +32,8 @@ public class PlaceOrderController extends BaseController {
      * This method checks the availability of product when user click PlaceOrder button
      * @throws SQLException
      */
+    // Content coupling: Lớp PaymentController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
+    // Common coupling: 
     public void placeOrder() throws SQLException {
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
     }
@@ -41,6 +43,9 @@ public class PlaceOrderController extends BaseController {
      * @return Order
      * @throws SQLException
      */
+
+    // ???Content coupling: Lớp PlaceOrderController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
+    // Common coupling: Lớp PlaceOrderController sử dụng dữ liệu global của lớp SessionInformation (cartInstance)
     public Order createOrder() throws SQLException {
         return new Order(SessionInformation.cartInstance);
     }

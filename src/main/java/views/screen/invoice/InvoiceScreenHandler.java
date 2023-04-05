@@ -86,6 +86,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		shippingFees.setText(ViewsConfig.getCurrencyFormat(order.getShippingFees()));
 		total.setText(ViewsConfig.getCurrencyFormat(order.getTotal()));
 
+		// Common Coupling: lớp InvoiceScreenHandler sử dụng dữ liệu global của lớp ViewsConfig (INVOICE_MEDIA_SCREEN_PATH)
 		invoice.getOrder().getListOrderMedia().forEach(orderMedia -> {
 			try {
 				MediaInvoiceScreenHandler mis = new MediaInvoiceScreenHandler(ViewsConfig.INVOICE_MEDIA_SCREEN_PATH);
@@ -103,6 +104,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	}
 
 	@FXML
+	// Common Coupling: lớp InvoiceScreenHandler sử dụng dữ liệu global của lớp ViewsConfig (PAYMENT_SCREEN_PATH)
 	void confirmInvoice(MouseEvent event) throws IOException {
 		BaseScreenHandler paymentScreen = new PaymentScreenHandler(this.stage, ViewsConfig.PAYMENT_SCREEN_PATH, invoice);
 		paymentScreen.setBController(new PaymentController());

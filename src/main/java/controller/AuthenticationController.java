@@ -29,6 +29,8 @@ public class AuthenticationController extends BaseController {
         }
     }
 
+    //??? Content coupling: Bên trong lớp AuthenticationController truy xuất trực tiếp tới dữ liệu của lớp SessionInformation (mainUser, expiredTime)
+    //Common coupling: Lớp AuthenticationController Sử dụng biến global của lớp SessionInformation (mainUser, expiredTime)
     public User getMainUser() throws ExpiredSessionException {
         if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
             logout();
@@ -36,6 +38,8 @@ public class AuthenticationController extends BaseController {
         } else return SessionInformation.mainUser.cloneInformation();
     }
 
+    //Content coupling: Bên trong lớp AuthenticationController truy cập và sửa đổi trực tiếp tới dữ liệu của lớp SessionInformation (mainUser, expiredTime)
+    //Common coupling: Lớp AuthenticationController Sử dụng biến global của lớp SessionInformation (mainUser, expiredTime)
     public void login(String email, String password) throws Exception {
         try {
             User user = new UserDAO().authenticate(email, md5(password));
@@ -46,7 +50,9 @@ public class AuthenticationController extends BaseController {
             throw new FailLoginException();
         }
     }
-
+    
+    //Content coupling: Bên trong lớp AuthenticationController truy cập và sửa đổi trực tiếp tới dữ liệu của lớp SessionInformation (mainUser, expiredTime)
+    //Common coupling: Lớp AuthenticationController Sử dụng biến global của lớp SessionInformation (mainUser, expiredTime)
     public void logout() {
         SessionInformation.mainUser = null;
         SessionInformation.expiredTime = null;

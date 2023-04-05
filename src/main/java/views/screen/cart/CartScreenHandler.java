@@ -66,6 +66,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		}
 	}
 
+	// Common Coupling: Lớp HomeScreenHandler, PopupScreenHandler, CartScreenHandler sử dụng chung biến global của lớp Viewsconfig (IMAGE_PATH)
 	protected void setupFunctionality() throws Exception {
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");

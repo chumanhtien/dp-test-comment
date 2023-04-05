@@ -104,6 +104,8 @@ public class PaymentController extends BaseController {
 	}
 
 	public void emptyCart(){
+		// ??? Content coupling: Lớp PaymentController truy xuất trực tiếp và thay đổi giá trị dữ liệu (cartInstance) của lớp SessionInformation
+		// Common coupling: Lớp PaymentController sử dụng biến global của Lớp SessionInformation (cartInstance)
         SessionInformation.cartInstance.emptyCart();
     }
 }
