@@ -1,5 +1,6 @@
 package entity.user;
 
+// singleton: User này cũng chỉ cần 1 instance trong ứng dụng
 public class User {
     
     private int id;
@@ -8,7 +9,13 @@ public class User {
     private String address;
     private String phone;
 
-    public User(int id, String name, String email, String address, String phone) {
+    private static User user = new User(1, "name default", "email dèault", "address default", "phone default");
+
+    public static User getUserInstance() {
+        return this.user;
+    }
+
+    private User(int id, String name, String email, String address, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -33,35 +40,43 @@ public class User {
 
     // getter and setter
     public String getName() {
-        return this.name;
+        return this.user.name;
     }
 
     public void setusername(String name) {
-        this.name = name;
+        this.user.name = name;
     }
 
     public String getEmail() {
-        return this.email;
+        return this.user.email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.user.email = email;
     }
 
     public String getAddress() {
-        return this.address;
+        return this.user.address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.user.address = address;
     }
 
     public String getPhone() {
-        return this.phone;
+        return this.user.phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.user.phone = phone;
+    }
+
+    public void setId(int id) {
+        this.user.id = id;
+    }
+
+    public String getId() {
+        return this.user.id;
     }
     
 }
