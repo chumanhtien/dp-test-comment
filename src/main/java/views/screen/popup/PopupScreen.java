@@ -12,7 +12,10 @@ import views.screen.ViewsConfig;
 
 import java.io.IOException;
 
-
+// ?? Vi phạm SRP:
+// Vi phạm OCP: trong tương lai có thể có thêm nhiều loại Pop up nữa (VD: Warning), nên phải thay đổi mã nguồn trực tiếp (vi phạm close for modify)
+// => Giải pháp: một lớp cha (interface) Popup, các lớp con kế thừa và override method của cha
+// Vi phạm LSP: Do lớp PopupScreen kế thừa BaseScreenHandler không thể sử dụng các phương thức như getPreviousScreen(), getBController()...
 public class PopupScreen extends BaseScreenHandler {
 
     @FXML
@@ -32,17 +35,17 @@ public class PopupScreen extends BaseScreenHandler {
         popup.setImage(imagePath);
         return popup;
     }
-	// Common Coupling: Lớp HomeScreenHandler, PopupScreenHandler, CartScreenHandler sử dụng chung biến global của lớp Viewsconfig (IMAGE_PATH)
+
     public static void success(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
                 .show(true);
     }
-	// Common Coupling: Lớp HomeScreenHandler, PopupScreenHandler, CartScreenHandler sử dụng chung biến global của lớp Viewsconfig (IMAGE_PATH)
+
     public static void error(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickerror.png", false)
                 .show(false);
     }
-	// Common Coupling: Lớp HomeScreenHandler, PopupScreenHandler, CartScreenHandler sử dụng chung biến global của lớp Viewsconfig (IMAGE_PATH)
+
     public static PopupScreen loading(String message) throws IOException{
         return popup(message, ViewsConfig.IMAGE_PATH + "/" + "loading.gif", true);
     }

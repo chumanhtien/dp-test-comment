@@ -10,6 +10,7 @@ import entity.media.Media;
  * This class is the base controller for our AIMS project
  * @author nguyenlm
  */
+/* LSP: các lớp AuthenticationController, HomeController, PaymentController kế thừa từ BaseController không hợp lý khi thực hiện getListCartMedia() và checkMediaCart() */
 public class BaseController {
     
     /**
@@ -17,9 +18,6 @@ public class BaseController {
      * @param media
      * @return CartMedia or null
      */
-
-    // ???Content coupling: Lớp BaseController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
-    // Common coupling: Lớp BaseController sử dụng biến global của lớp SessionInformation (cartInstance)
     public CartItem checkMediaInCart(Media media){
         return SessionInformation.cartInstance.checkMediaInCart(media);
     }
@@ -28,9 +26,6 @@ public class BaseController {
      * This method gets the list of items in cart
      * @return List[CartMedia]
      */
-
-    // ???Content coupling: Lớp BaseController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
-    // Common coupling: Lớp BaseController sử dụng biến global của lớp SessionInformation (cartInstance)
     public List getListCartMedia(){
         return SessionInformation.cartInstance.getListMedia();
     }

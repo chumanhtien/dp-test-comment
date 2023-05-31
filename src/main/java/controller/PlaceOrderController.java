@@ -21,6 +21,12 @@ import java.util.regex.Pattern;
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
+<<<<<<< HEAD
+// Vi phạm SRP: Vừa xử lý, xác thực dữ liệu delivery info vừa làm nhiệm vụ đặt hàng => có nhiều hơn 1 lý do để thay đổi mã nguồn => vi phạm
+=======
+// SRP: Validate dữ liệu vừa xử lý dữ liệu đặt hàng => có nhiều hơn 1 lý do để thay đổi
+// SRP?? : Validate các loại
+>>>>>>> 9fba62a0e431fd716b2792b6ad58e0de456c828d
 public class PlaceOrderController extends BaseController {
 
     /**
@@ -32,8 +38,6 @@ public class PlaceOrderController extends BaseController {
      * This method checks the availability of product when user click PlaceOrder button
      * @throws SQLException
      */
-    // Content coupling: Lớp PaymentController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
-    // Common coupling: 
     public void placeOrder() throws SQLException {
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
     }
@@ -43,9 +47,6 @@ public class PlaceOrderController extends BaseController {
      * @return Order
      * @throws SQLException
      */
-
-    // ???Content coupling: Lớp PlaceOrderController truy xuất trực tiếp dữ liệu (cartInstance) của lớp SessionInformation
-    // Common coupling: Lớp PlaceOrderController sử dụng dữ liệu global của lớp SessionInformation (cartInstance)
     public Order createOrder() throws SQLException {
         return new Order(SessionInformation.cartInstance);
     }
@@ -65,6 +66,7 @@ public class PlaceOrderController extends BaseController {
      * @throws InterruptedException
      * @throws IOException
      */
+    
     public DeliveryInfo processDeliveryInfo(HashMap info) throws InterruptedException, IOException, InvalidDeliveryInfoException {
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());

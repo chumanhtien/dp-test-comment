@@ -26,8 +26,6 @@ public class Order {
 
     public Order(Cart cart) {
         List<OrderItem> orderItems = new ArrayList<>();
-        // ???Content Coupling: Lớp Order truy xuất trực tiếp dữ liệu của lớp SessionInformation (cartInstance)
-        // Common Coupling: Lớp Order sử dụng dữ liệu global của lớp SessionInformation (cartInstance)
         for (Object object : SessionInformation.cartInstance.getListMedia()) {
             CartItem cartItem = (CartItem) object;
             OrderItem orderItem = new OrderItem(cartItem.getMedia(),
@@ -37,7 +35,6 @@ public class Order {
         }
         this.orderMediaList = Collections.unmodifiableList(orderItems);
         this.subtotal = cart.calSubtotal();
-        // Common Coupling: Lớp Order sử dụng biến global PERCENT_VAT của lớp ViewsConfig
         this.tax = (int) (ViewsConfig.PERCENT_VAT/100) * subtotal;
     }
 

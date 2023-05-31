@@ -148,7 +148,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         super.show();
     }
 
-	// Common Coupling: Lớp HomeScreenHandler, PopupScreenHandler, CartScreenHandler sử dụng chung biến global của lớp Viewsconfig (IMAGE_PATH)
     public void setImage() {
         // fix image path caused by fxml
         File file1 = new File(ViewsConfig.IMAGE_PATH + "/" + "Logo.png");
@@ -249,7 +248,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             exp.printStackTrace();
         }
     }
-	// Common Coupling: Lớp HomeScreenHandler sử dụng chung biến global của lớp Viewsconfig (LOGIN_SCREEN_PATH)
+
     @FXML
     void redirectLoginScreen(MouseEvent event) {
         try {
