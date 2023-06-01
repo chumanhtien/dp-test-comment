@@ -95,4 +95,26 @@ public class ApplicationProgrammingInterface {
 			throw new IllegalStateException(e);
 		}
 	}
+
+	public abstract void setupMethod(HttpURLConnection conn) {
+
+	}
+
+	public abstract void setupMethod(HttpURLConnection conn, String token) {
+
+	}
+	public abstract progress(HttpURLConnection conn, String token, String data) {
+
+	}
+
+	public static String executeMethod(String url, String token, String data) {
+		try {
+			HttpURLConnection conn = setupConnection(url);
+			setupMethod(conn);
+			String response = progress(conn, token, data);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}	
+	}
+
 }
