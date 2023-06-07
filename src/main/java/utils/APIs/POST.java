@@ -3,7 +3,7 @@ import ApplicationProgrammingInterface;
 
 public class POST extends ApplicationProgrammingInterface {
     @override
-    public static setupMethod(HttpURLConnection conn, String token) {
+    public static setupMethod(HttpURLConnection conn, String token, String data) {
         super.allowMethods("PATCH");
         conn.setRequestMethod("PATCH");
 		conn.setRequestProperty("Authorization", "Bearer " + token);
